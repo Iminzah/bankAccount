@@ -21,6 +21,12 @@ class BankAccount:
         return name
 
     def deposit(self, amount):
+        try:
+            amount + 1
+        except TypeError:
+            print("You must enter amount in figures.")
+            return
+
         if amount <= 0:
             print("You cannot deposit zero or negative")
         else:
@@ -31,20 +37,21 @@ class BankAccount:
                 date, time, amount, self.account_name()
             )
             self.deposits.append(statement)
-            print(
-                "You have deposited {} to {}".format(
-                    amount, self.account_name()
-                )
+            print("Dear {} you have deposited {} at {} on {}.Your new balance is {}".format(self.account_name(),amount,time,date,self.balance)
+               
             )
-            
-            
-    
-
+        
     def get_deposit_statement(self):
         for statement in self.deposits:
             print(statement)
 
     def withdraw(self, amount):
+        try:
+            amount + 1
+        except TypeError:
+            print("You must enter amount in figures.")
+            return
+
         if amount <= 0:
             print("You cannot withdraw zero or negative")
         elif amount > self.balance:
@@ -72,6 +79,13 @@ class BankAccount:
         )
 
     def get_loan(self, amount):
+        try:
+            amount + 1
+        except TypeError:
+            print("You must enter amount in figures.")
+            return
+
+        
         if amount <= 0:
             print("You cannot borrow 0 or a negative value")
         else:
@@ -84,6 +98,12 @@ class BankAccount:
             )
 
     def repay_loan(self, amount):
+        try:
+            amount + 1
+        except TypeError:
+            print("You must enter amount in figures.")
+            return
+
         if self.loan_amount == 0:
             print(
                 "There is no pending loan for {}".format(self.account_name())
@@ -119,11 +139,13 @@ class BankAccount:
                         amount
                     )
                 )
-           
+
 acc1=BankAccount("sharon","prudence","equity","5777899")
-acc1.deposit(345)
+acc1.deposit(678)
+acc1.deposit(567898)
 acc1.get_deposit_statement()
 acc1.get_loan(346)
 acc1.repay_loan(45)
 acc1.withdraw(24)
 acc1.get_withdrawal_statement()
+          
